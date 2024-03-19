@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Banner from "../components/ui/Banner.astro";
+import About from "../components/ui/About.astro";
+import Brands from "../components/ui/Brands.astro";
+import TeamComponent from "../components/functional/TeamComponent";
+import Gallery from "../components/functional/Gallery";
+import Testimonial from "../components/functional/Testimonial";
+import PricingComponent from "../components/ui/PricingComponent.astro";
+import BlogsComponent from "../components/functional/BlogsComponent";
+import InstagramGallery from "../components/functional/InstagramGallery";
+import Features from "../components/ui/Features.astro";
+
+import { getCollection } from "astro:content";
+const banner = await getCollection("banner");
+const imageGallery = await getCollection("imageGallery");
+const categories = await getCollection("categories");
+const brands = await getCollection("brands");
+const about = await getCollection("about");
+const titles = await getCollection("titles");
+const stats = await getCollection("stats");
+const teams = await getCollection("teams");
+const instaGallery = await getCollection("instaGallery");
+const testimonials = await getCollection("testimonials");
+const prices = await getCollection("prices");
+const features = await getCollection("features");
+const blogs = await getCollection("blogs");
+---
+
+<Layout title="Welcome to Astro.">
+  <Banner
+    titleObj={titles[0]?.data?.banner}
+    categories={categories}
+    bannerObj={banner[0]}
+  />
+  <Features featuresData={features} />
+  <About
+    aboutData={about[0]?.data}
+    titleObj={titles[0]?.data?.about}
+    statsData={stats[0]?.data}
+  />
+  <Brands brandsData={brands[0]?.data?.brand} />
+  <TeamComponent client:load parentClass="" teamsData={teams} />
+  <Gallery galleryData={imageGallery} categories={categories} client:load />
+  <Testimonial client:load testimonialsData={testimonials} />
+  <PricingComponent pricesData={prices} />
+  <BlogsComponent
+    client:load
+    blogsData={blogs}
+    titleObj={titles[0]?.data?.blogs}
+  />
+  <InstagramGallery
+    client:load
+    galleryData={instaGallery[0]?.data?.instaGallery}
+  />
+</Layout>

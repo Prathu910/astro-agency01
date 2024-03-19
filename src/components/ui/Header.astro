@@ -1,0 +1,132 @@
+---
+import { menuList } from "../../config/index";
+const dropdownOpen = "2";
+---
+
+<>
+  <nav class="navbar navbar-expand-lg mb-nav" id="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <h2>AiNext</h2>
+      </a>
+      <div class="navbar-toggler text-decoration-none">
+        <span class="burger-menu">
+          <span class="top-bar"></span>
+          <span class="middle-bar"></span>
+          <span class="bottom-bar"></span>
+        </span>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          {
+            menuList.map(({ dropDownList, name, path }) => {
+              return (
+                <li class="nav-item">
+                  <a
+                    href={path}
+                    class={`${
+                      dropDownList?.length > 0 ? "dropdown-toggle" : ""
+                    } nav-link`}
+                  >
+                    {name}
+                  </a>
+                  {dropDownList?.length > 0 && (
+                    <ul class="dropdown-menu">
+                      {dropDownList?.map(({ path, name }) => {
+                        return (
+                          <li class="nav-item">
+                            <a href={path} class="nav-link">
+                              {name}
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </li>
+              );
+            })
+          }
+        </ul>
+        <div class="nav-btn">
+          <a href="/contact" class="default-btn">
+            Get Started
+            <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  {/* --------- Mobile navbar start */}
+  <div class={`responsive-navbar`}>
+    <div class="offcanvas-header">
+      <a href="/" class="logo d-inline-block">
+        <h2>AiNext</h2>
+      </a>
+      <button
+        type="button"
+        class="close-btn bg-transparent position-relative lh-1 p-0 border-0"
+        area-label="Close Menu"
+      >
+        <i class="ri-close-line"><span style="display: none;">close menu</span></i>
+      </button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="responsive-menu">
+        {
+          menuList.map(({ id, dropDownList, name, path }) => {
+            return (
+              <li
+                class={`responsive-menu-list ${
+                  dropdownOpen === id ? "activeDropdown" : ""
+                } ${dropDownList.length > 0 ? "" : "without-icon"}`}
+              >
+                <a href={path}>{name}</a>
+                {dropDownList?.length > 0 && (
+                  <ul class="responsive-menu-items">
+                    {dropDownList?.map(({ name, path }) => (
+                      <li>
+                        <a href={path}>{name}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            );
+          })
+        }
+      </ul>
+      <div class="others-option d-md-flex align-items-center">
+        <div class="option-item">
+          <a href="contact.html" class="default-btn">
+            <i class="ri-arrow-right-line"></i>
+            <span>Get Started</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {/* --------- Mobile navbar end */}
+</>
+
+<script>
+  function mobileNav() {
+    const toggleBtn = document.querySelector(".navbar-toggler")
+    const mobNavbar = document.querySelector(".responsive-navbar")
+    const closeBtn = document.querySelector(".close-btn")
+  
+    toggleBtn.addEventListener("click" , () => {
+      if (mobNavbar.classList.contains("show")) {
+        mobNavbar.classList.remove("show")
+      } else {
+        mobNavbar.classList.add("show")
+      }
+    })
+  
+    closeBtn.addEventListener("click", () => {
+      mobNavbar.classList.remove("show")
+    })
+  }
+  mobileNav()
+</script>

@@ -1,0 +1,73 @@
+---
+import moment from "moment";
+import { client } from "../../../tina/__generated__/client";
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import PageHeader from "../../components/ui/common/PageHeader.astro";
+import BlogDetailsFooter from "../../components/ui/common/BlogDetailsFooter.astro";
+import InstagramGallery from "../../components/functional/InstagramGallery";
+import Author from "../../components/ui/common/Author.astro";
+import getFileContents from "../../utils/index";
+import BlogSidebar from "../../components/ui/BlogSidebar.astro";
+
+const instaGallery = await getCollection("instaGallery");
+const allBlogs = await getCollection("blogs");
+const recentBlogs = allBlogs.slice(0, 3);
+export async function getStaticPaths() {
+  const posts = await getCollection("blogs");
+  return posts.map((post) => {
+    const { slug } = post;
+
+    return {
+      params: { slug },
+      props: post,
+    };
+  });
+}
+
+const post = Astro.props;
+const { Content } = await post.render();
+const {
+  data: { author, date, bannerImg },
+} = post;
+
+const postAuthor = await client.queries.authors({
+  relativePath: getFileContents(author),
+});
+const {
+  data: { authors },
+} = postAuthor;
+---
+
+<Layout title="Blog title">
+  <PageHeader pageName={"Blog Details"} />
+  <div class="blog-details pt-100 pb-70">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="blog-details-desc">
+            <div class="article-image">
+              <img src={bannerImg} alt="image" />
+            </div>
+            <div class="entry-meta">
+              <ul>
+                <li>By: <a href="#">{authors?.name}</a></li>
+                <li>Date: {moment(date).format("DD/MM/YYYY")}</li>
+              </ul>
+            </div>
+            <Content />
+            <BlogDetailsFooter authorData={authors.socialLinks} />
+            <Author authorData={authors} />
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <BlogSidebar recentBlogs={recentBlogs} />
+        </div>
+      </div>
+    </div>
+  </div>
+  <InstagramGallery
+    client:load
+    galleryData={instaGallery[0]?.data?.instaGallery}
+  />
+</Layout>

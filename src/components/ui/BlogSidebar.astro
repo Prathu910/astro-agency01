@@ -1,0 +1,28 @@
+---
+import moment from "moment";
+const { recentBlogs } = Astro.props;
+---
+
+<div class="blog-sidebar">
+  <div class="widget recent_post_widget">
+    <h5 class="widget-title">Recent Posts</h5>
+    {
+      recentBlogs?.map(({ slug, data: { date, tag, title } }) => {
+        return (
+          <div class="post-item">
+            <div class="info">
+              <ul>
+                <li>
+                  <a href={slug}>{moment(date).format("DD/MM/YYYY")}</a>
+                </li>
+              </ul>
+            </div>
+            <h6 class="post-title">
+              <a href={slug}>{title}</a>
+            </h6>
+          </div>
+        );
+      })
+    }
+  </div>
+</div>

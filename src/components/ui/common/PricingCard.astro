@@ -1,0 +1,21 @@
+---
+const { id, title, price, features, link, type } = Astro.props;
+---
+
+<div class="col-lg-4 col-md-6">
+  <div class={`${id === 1 ? "active" : ""} card`}>
+    <h2 class="card_title">
+      <i class="ri-vip-crown-line"></i>
+      {title}
+    </h2>
+    <h3 class="pricing">
+      ${price}
+      <span class="small">/{type}</span>
+    </h3>
+    <hr />
+    <ul class="features">
+      {features.map((item) => <li>{item}</li>)}
+    </ul>
+    <a href={link} class="cta_btn"> Buy Now</a>
+  </div>
+</div>

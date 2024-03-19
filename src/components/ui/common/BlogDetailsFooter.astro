@@ -1,0 +1,37 @@
+---
+const { authorData } = Astro.props;
+---
+
+<div class="article-footer">
+  <div class="article-tags">
+    <span><i class="ri-price-tag-3-line"></i></span>
+    <a href="#">City</a>,
+    <a href="#">Games</a>,
+    <a href="#">Travel</a>
+  </div>
+  <div class="article-share">
+    <ul class="social">
+      <li><span>Share:</span></li>
+      <li>
+        <a href={authorData.fb} class="facebook" target="_blank"
+          ><i class="ri-facebook-fill"></i></a
+        >
+      </li>
+      <li>
+        <a href={authorData.twitter} class="twitter" target="_blank"
+          ><i class="ri-twitter-line"></i></a
+        >
+      </li>
+      <li>
+        <a href={authorData.linkedin} class="linkedin" target="_blank"
+          ><i class="ri-linkedin-fill"></i></a
+        >
+      </li>
+      <li>
+        <a href={authorData.insta} class="instagram" target="_blank"
+          ><i class="ri-instagram-line"></i></a
+        >
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+---
+const { pageName } = Astro.props;
+---
+
+<div class="section-banner">
+  <div class="container">
+    <div class="section-banner-title">
+      <h1>{pageName}</h1>
+      <nav>
+        <ol class="breadcrumb d-flex align-items-center gap-2">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <span>/</span>
+          <li class="breadcrumb-item active" aria-current="page">{pageName}</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>

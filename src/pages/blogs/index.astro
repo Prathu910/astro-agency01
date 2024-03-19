@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import BlogCard from "../../components/functional/common/BlogCard";
+import PageHeader from "../../components/ui/common/PageHeader.astro";
+import InstagramGallery from "../../components/functional/InstagramGallery";
+import moment from "moment";
+import Layout from "../../layouts/Layout.astro";
+const blogs = await getCollection("blogs");
+const instaGallery = await getCollection("instaGallery");
+---
+
+<Layout title="blogs">
+  <PageHeader pageName={"Blog"} />
+  <div class="blog-area article-area pt-100 pb-70">
+    <div class="container">
+      <div class="row">
+        {
+          blogs.map(({ slug, data: { date, previewImg, title } }) => {
+            return (
+              <div class="col-lg-4">
+                <BlogCard
+                  date={moment(date).format("DD/MM/YYYY")}
+                  link={slug}
+                  thumb={previewImg}
+                  title={title}
+                />
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+  <InstagramGallery
+    client:load
+    galleryData={instaGallery[0]?.data?.instaGallery}
+  />
+</Layout>

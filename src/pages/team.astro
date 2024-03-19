@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import InstagramGallery from "../components/functional/InstagramGallery";
+import TeamComponent from "../components/functional/TeamComponent";
+import Brands from "../components/ui/Brands.astro";
+import PageHeader from "../components/ui/common/PageHeader.astro";
+import Layout from "../layouts/Layout.astro";
+const teams = await getCollection("teams");
+const instaGallery = await getCollection("instaGallery");
+const brands = await getCollection("brands");
+---
+
+<Layout title="About Us">
+  <PageHeader pageName={"Team"} />
+  <TeamComponent teamsData={teams} parentClass="ptb-100" client:load />
+  <Brands brandsData={brands[0]?.data?.brand} />
+  <InstagramGallery
+    galleryData={instaGallery[0]?.data?.instaGallery}
+    client:load
+  />
+</Layout>

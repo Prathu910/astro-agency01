@@ -1,0 +1,130 @@
+---
+const {footerObj , footerData} = Astro.props;
+const {socialLinks , siteName, newsLetter} = footerData
+---
+
+<footer class="footer-area">
+  <div class="container">
+    <div class="footer-top-area pt-100">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+          <div class="single-footer-widget">
+            <a href="/" class="logo">
+              <h2>{siteName}</h2>
+            </a>
+            <p>
+              {footerObj?.desc}
+            </p>
+            <ul class="social-links">
+              <li>
+                <a href={socialLinks?.fb} target="_blank" aria-label="social link.">
+                  <i class="ri-facebook-fill"></i>
+                </a>
+              </li>
+              <li>
+                <a href={socialLinks?.insta} target="_blank" aria-label="social link.">
+                  <i class="ri-instagram-line"></i>
+                </a>
+              </li>
+              <li>
+                <a href={socialLinks?.linkedin} target="_blank" aria-label="social link.">
+                  <i class="ri-linkedin-fill"></i>
+                </a>
+              </li>
+              <li>
+                <a href={socialLinks?.twitter} target="_blank" aria-label="social link.">
+                  <i class="ri-youtube-line"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <div class="single-footer-widget pl-5">
+            <h3>Links</h3>
+            <ul class="links-list">
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/about">About Us</a>
+              </li>
+              <li>
+                <a href="/pricing">Pricing</a>
+              </li>
+              <li>
+                <a href="/blog">Blog</a>
+              </li>
+              <li>
+                <a href="/contact">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <div class="single-footer-widget">
+            <h3>Legal</h3>
+            <ul class="links-list">
+              <li>
+                <a href="/contact">Legal</a>
+              </li>
+              <li>
+                <a href="/terms-conditions">Tearms of Use</a>
+              </li>
+              <li>
+                <a href="/terms-conditions">Tearm & Condition</a>
+              </li>
+              <li>
+                <a href="/contact">Payment Method</a>
+              </li>
+              <li>
+                <a href="/privacy-policy">Privacy Policy</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6">
+          <div class="single-footer-widget">
+            <h3>Newsletter</h3>
+            <div class="footer-newsletter-info">
+              <p>
+                {newsLetter}
+              </p>
+              <form class="newsletter-form" data-toggle="validator">
+                <label>
+                  <i class="bx bx-envelope-open"></i>
+                </label>
+                <input
+                  type="text"
+                  class="input-newsletter"
+                  placeholder="Enter your email address"
+                  name="EMAIL"
+                  required
+                />
+                <button type="submit" class="default-btn">
+                  <i class="ri-send-plane-line"></i> Subscribe Now
+                </button>
+                <div id="validator-newsletter2" class="form-result"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pr-line"></div>
+    <div class="footer-bottom-area">
+      <p>
+        © Copyright |{" "}
+        <a href="https://themeforest.net/user/theme_ocean" target="_blank">
+          Theme Ocean
+        </a>{" "}
+         | All Rights Reserved is Proudly{" "}
+      </p>
+    </div>
+  </div>
+  <div class="lines">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+</footer>

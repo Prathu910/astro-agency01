@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+import Counter from "../functional/Counter";
+
+const { aboutData, titleObj, statsData } = Astro.props;
+const { title, tag, desc } = titleObj;
+const { stats1, stats2, stats3 } = statsData;
+---
+
+<div class="about-area ptb-100 section-bg">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="image">
+          <Image
+            src={aboutData?.previewImg}
+            alt="image"
+            width={636}
+            height={636}
+          />
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="content">
+          <div class="sub-t">{tag}</div>
+          <h2>{title}</h2>
+          <div set:html={desc} />
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-4">
+              <Counter client:load text={stats1?.label} count={stats1?.value} />
+            </div>
+            <div class="col-lg-4 col-md-4 col-4">
+              <Counter
+                client:load
+                text={stats2?.label}
+                count={stats2?.value}
+                class="d-flex align-items-center"
+              />
+            </div>
+            <div class="col-lg-4 col-md-4 col-4">
+              <Counter client:load text={stats3?.label} count={stats3?.value} />
+            </div>
+          </div>
+          <a class="main-btn" href="/about" aria-label="Go to about page.">
+            <span></span>
+            <i class="ri-quill-pen-line"></i>
+            {aboutData?.tag}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

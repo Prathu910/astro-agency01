@@ -1,0 +1,18 @@
+---
+instaGallery:
+  - /assets/img/gallery/insta-2.jpg
+  - /assets/img/gallery/insta-1.jpg
+  - /assets/img/gallery/insta-3.jpg
+  - /assets/img/gallery/insta-4.jpg
+  - /assets/img/gallery/insta-5.jpg
+  - /assets/img/gallery/insta-6.jpg
+  - /assets/img/gallery/insta-7.jpg
+  - /assets/img/gallery/insta-8.jpg
+  - /assets/img/gallery/insta-9.jpg
+  - /assets/img/gallery/insta-10.jpg
+  - /assets/img/gallery/insta-1.jpg
+  - /assets/img/gallery/insta-2.jpg
+  - /assets/img/gallery/insta-3.jpg
+  - /assets/img/gallery/insta-4.jpg
+  - /assets/img/gallery/insta-5.jpg
+---

@@ -1,0 +1,27 @@
+---
+const { featuresData } = Astro.props;
+---
+
+<section id="features" class="fetuses-area pt-70">
+  <div class="container-fluid">
+    <div class="row justify-content-center g-0">
+      {
+        featuresData.map(async ({ data: { icon, link, title }, render }) => {
+          const { Content } = await render();
+          return (
+            <div class="col-lg-3 col-md-6">
+              <div class="single-fetuses-box">
+                <div class="icon">
+                  <i class={icon} />
+                </div>
+                <h3>{title}</h3>
+                <Content />
+                <a href={link}>Checkout Features</a>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

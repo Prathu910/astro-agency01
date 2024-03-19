@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+}
+import Header from "../components/ui/Header.astro";
+import Footer from "../components/ui/Footer.astro";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../assets/css/style.css";
+import "../assets/css/responsive.css";
+import "../assets/css/remixicon.min.css";
+import "../assets/css/flaticon.css";
+import { getCollection } from "astro:content";
+// import * as bootstrap from "bootstrap";
+const { title } = Astro.props;
+
+const footer = await getCollection("titles")
+const footerData = await getCollection("personalInfo")
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <!-- <link rel="preload" href="../../node_modules/swiper/css" /> -->
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer footerObj={footer[0]?.data?.footer} footerData={footerData[0]?.data} />
+    <div id="progress">
+      <span id="progress-value"><i class="ri-arrow-up-line"></i></span>
+    </div>
+  </body>
+</html>

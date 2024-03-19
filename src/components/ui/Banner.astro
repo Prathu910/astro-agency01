@@ -1,0 +1,81 @@
+---
+// import { Image } from "astro:assets";
+const { titleObj, categories, bannerObj } = Astro.props;
+
+const { title, tag, desc } = titleObj;
+const {
+  data: { bgImg, character },
+} = bannerObj;
+const splitted = title.split(" ");
+const mainTitle = splitted[0];
+const restTitle = splitted.slice(1).join(" ");
+---
+
+<div class="banner-area" style={{ backgroundImage: `url(${bgImg})` }}>
+  <div class="container-fluid">
+    <div class="row align-items-center g-0">
+      <div class="col-lg-6">
+        <div class="content">
+          <span class="banner-top-title">{tag}</span>
+          <h1>
+            <span class="grd-color-1">{mainTitle}</span>
+            {restTitle}
+          </h1>
+          <p>
+            {desc}
+          </p>
+          <div class="searchwrapper">
+            <div class="searchbox">
+              <div class="row align-items-center">
+                <div class="col-md-9">
+                  <form>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Search by Keywords..."
+                    />
+                  </form>
+                </div>
+                <!-- <div class="col-md-3">
+                  <select
+                    class="form-control category"
+                    id="provider"
+                    name="provider"
+                  >
+                    <option>deepai</option>
+                    <option>stabilityai</option>
+                    <option>replicate</option>
+                    <option>openai</option>
+                  </select>
+                </div> -->
+                <div class="col-lg-3">
+                  <form>
+                    <button class="btn" type="submit"> Generate</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="popular-tag">
+            <p>Popular Tag:</p>
+            {
+              categories?.map(({ data: { category } }) => (
+                <a href="/blogs">{category}</a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="image">
+          <img src={character} alt="image" width={576} height={708} />
+        </div>
+      </div>
+    </div>
+    <div class="scroll-down">
+      <a href="#features" aria-label="Click to go down.">
+        <div class="mouse"></div>
+      </a>
+    </div>
+  </div>
+</div>

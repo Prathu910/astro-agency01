@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets";
+const { brandsData } = Astro.props;
+---
+
+<div class="brands-area pt-70 pb-70">
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+      {
+        brandsData.map((brand, idx) => {
+          return (
+            <div class="col-lg-2 col-md-2 col-6">
+              <div class="image">
+                <Image
+                  src={brand}
+                  alt={`brand image${idx}`}
+                  width={196}
+                  height={55}
+                />
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+{
+  "name": "tasty-telescope",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "tinacms dev --port 8080 -c \"astro dev\"",
+    "start": "astro dev",
+    "build": "tinacms dev --port 8080 -c \"astro build\"",
+    "preview": "tinacms dev --port 8080 -c \"astro preview\"",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^3.0.10",
+    "astro": "^4.4.13",
+    "bootstrap": "^5.3.3",
+    "moment": "^2.30.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "react-slot-counter": "^2.2.5",
+    "swiper": "^11.0.7",
+    "tinacms": "^1.6.0"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^1.5.42",
+    "eslint": "^8.57.0",
+    "eslint-plugin-astro": "^0.31.4",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.34.0"
+  }
+}

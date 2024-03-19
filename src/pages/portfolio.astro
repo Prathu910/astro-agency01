@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import Gallery from "../components/functional/Gallery";
+import InstagramGallery from "../components/functional/InstagramGallery";
+import Brands from "../components/ui/Brands.astro";
+import PageHeader from "../components/ui/common/PageHeader.astro";
+import Layout from "../layouts/Layout.astro";
+const instaGallery = await getCollection("instaGallery");
+const brands = await getCollection("brands");
+const imageGallery = await getCollection("imageGallery");
+const categories = await getCollection("categories");
+---
+
+<Layout title="portfolio">
+  <PageHeader pageName={"Portfolio"} />
+  <Gallery galleryData={imageGallery} categories={categories} client:load />
+  <Brands brandsData={brands[0]?.data?.brand} />
+  <InstagramGallery
+    galleryData={instaGallery[0]?.data?.instaGallery}
+    client:load
+  />
+</Layout>
